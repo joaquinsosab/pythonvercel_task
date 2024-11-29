@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from os import environ
 
 load_dotenv()
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = environ.get('DJANGO_SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,11 +76,15 @@ WSGI_APPLICATION = 'python_vercel_task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('SUPABASE_NAME'),
-        'USER': os.getenv('SUPABASE_USER'),
-        'HOST': os.getenv('SUPABASE_HOST'),
-        'PASSWORD': os.getenv('SUPABASE_PASSWORD'),
+        'NAME': environ.get('SUPABASE_NAME'),
+        'USER': environ.get('SUPABASE_USER'),
+        'HOST': environ.get('SUPABASE_HOST'),
+        'PASSWORD': environ.get('SUPABASE_PASSWORD'),
         'PORT': '6543',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+            'sslrootcert': str(Path(BASE_DIR) / 'prod-ca-2021.crt')
+        }
     }
 }
 
