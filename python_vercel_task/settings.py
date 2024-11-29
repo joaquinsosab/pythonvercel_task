@@ -15,20 +15,16 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-SUPABASE_PASSWORD = os.getenv('SUPABASE_PASSWORD')
-DJANGO_SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-SUPABASE_HOST = os.getenv('SUPABASE_HOST')
 
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = DJANGO_SECRET_KEY
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost']
 
 
 # Application definition
@@ -80,13 +76,14 @@ WSGI_APPLICATION = 'python_vercel_task.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('SUPABASE_NAME'),
-        'USER': os.getenv('SUPABASE_USER'),
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
         # el host de tu base de datos
         'HOST': os.getenv('SUPABASE_HOST'),
         # la contraseña que utilizaste al crear el proyecto
         'PASSWORD': os.getenv('SUPABASE_PASSWORD'),
-        'PORT': os.getenv('SUPABASE_PORT','6543'),
+
+        'PORT': '6543',
     }
 }
 
