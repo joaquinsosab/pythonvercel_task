@@ -72,8 +72,8 @@ WSGI_APPLICATION = 'python_vercel_task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.xqdkpwsglfsyrhggrhee',
+        'NAME': config('NAME'),
+        'USER': config('USER'),
         'HOST': config('SUPABASE_HOST'),
         'PASSWORD': config('SUPABASE_PASSWORD'),
         'PORT': '6543',
