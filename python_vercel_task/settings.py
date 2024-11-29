@@ -80,11 +80,13 @@ WSGI_APPLICATION = 'python_vercel_task.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.tkaqmnknvnvoluxvxvpo',
-        'HOST': SUPABASE_HOST,
-        'PASSWORD': SUPABASE_PASSWORD,
-        'PORT': '6543',
+        'NAME': os.getenv('SUPABASE_NAME'),
+        'USER': os.getenv('SUPABASE_USER'),
+        # el host de tu base de datos
+        'HOST': os.getenv('SUPABASE_HOST'),
+        # la contraseña que utilizaste al crear el proyecto
+        'PASSWORD': os.getenv('SUPABASE_PASSWORD'),
+        'PORT': os.getenv('SUPABASE_PORT','6543'),
     }
 }
 
