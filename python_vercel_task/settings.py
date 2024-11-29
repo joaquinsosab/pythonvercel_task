@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'python_vercel_task.wsgi.application'
+WSGI_APPLICATION = 'python_vercel_task.wsgi.app'
 
 CONN_MAX_AGE = 60
 
@@ -80,9 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('SUPABASE_NAME'),
         'USER': os.getenv('SUPABASE_USER'),
-        # el host de tu base de datos
         'HOST': os.getenv('SUPABASE_HOST'),
-        # la contraseña que utilizaste al crear el proyecto
         'PASSWORD': os.getenv('SUPABASE_PASSWORD'),
         'PORT': '6543',
     }
