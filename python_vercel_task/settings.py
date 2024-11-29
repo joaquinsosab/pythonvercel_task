@@ -9,14 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+from decouple import  config
 from pathlib import Path
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,9 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'python_vercel_task.wsgi.app'
-
-CONN_MAX_AGE = 60
+WSGI_APPLICATION = 'python_vercel_task.wsgi.application'
 
 
 # Database
@@ -78,10 +72,10 @@ CONN_MAX_AGE = 60
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('SUPABASE_NAME'),
-        'USER': os.getenv('SUPABASE_USER'),
-        'HOST': os.getenv('SUPABASE_HOST'),
-        'PASSWORD': os.getenv('SUPABASE_PASSWORD'),
+        'NAME': 'postgres',
+        'USER': 'postgres.xqdkpwsglfsyrhggrhee',
+        'HOST': config('SUPABASE_HOST'),
+        'PASSWORD': config('SUPABASE_PASSWORD'),
         'PORT': '6543',
     }
 }
